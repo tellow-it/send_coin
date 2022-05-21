@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+
+{% block header %}
+    <header>
+        <h1>Transaction ID: {{ transaction.pk }}</h1>
+    </header>
+
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="card mb-4  mt-3">
+                <div class="card-body">
+                    <p><b>Address: </b>{{ transaction.name }}</p>
+                    <p><b>Description: </b>{{ transaction.description }}</p>
+                    <p><b>Date sending: </b>{{ transaction.date_send }}</p>
+                    <p><a href="{% url 'list' %}" class="btn btn-primary">Back</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

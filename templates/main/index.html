@@ -1,0 +1,61 @@
+{% extends 'main/base.html' %}
+
+
+{% block header %}
+    <header>
+        <h1>List transaction </h1>
+        <form action="{% url 'button_send' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="btn btn-primary" type="submit" value=Send>
+        </form>
+    </header>
+
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Address</th>
+            <th scope="col">Date sending</th>
+            <th scope="col">Detail</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tr in list_tr %}
+            <tr>
+                <td>{{ tr.pk }}</td>
+                <td>{{ tr.name }}</td>
+                <td>{{ tr.date_send }}</td>
+                <td><a href="{% url 'detail' tr.pk %}" class="btn btn-primary">Detail View &rarr;</a></td>
+            </tr>
+        {% empty %}
+            <li>No ads yet.</li>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block footer %}
+    <div class="center">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link"
+                                         href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                </li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+                <li class="page-item"><a class="page-link"
+                                         href="?page={{ i }}">{{ i }}</a>
+                </li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link"
+                                         href="?page={{ page_obj.next_page_number }}">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
