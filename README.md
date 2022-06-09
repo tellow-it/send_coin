@@ -16,5 +16,4 @@ Login: admin Password: adminadmin
 
 https://sendcoinbcs.herokuapp.com
 
-### Django-Admin settings
-### Login: admin Password: adminadmin
+
